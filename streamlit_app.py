@@ -3,7 +3,7 @@ import streamlit as st
 import numpy as np
 import os
 import time
-import cv2
+#import cv2
 timestr = time.strftime('%Y-%m-%d-%H:%M:%S')
 
 
@@ -70,24 +70,24 @@ def main():
         image_file = st.file_uploader('Upload Image', type=['jpg','png','jpeg'])
         if image_file is not None:
             # Method 1: Display Image
-            #img = load_image(image_file)
-            #st.image(img)
+            img = load_image(image_file)
+            st.image(img)
 
             # Method 2: Using opencv
-            file_bytes = np.asanyarray(bytearray(image_file.read()),dtype=np.uint8)
-            opencv_image = cv2.imdecode(file_bytes,1)
+            # file_bytes = np.asanyarray(bytearray(image_file.read()),dtype=np.uint8)
+            # opencv_image = cv2.imdecode(file_bytes,1)
             
-            c1,c2 = st.columns(2)
-            with c1:
-                st.image(opencv_image)
-                
-            with c2:
-                st.info('QR Code Decodificado')
-                det = cv2.QRCodeDetector()
-                retval,points,straight_qrcode = det.detectAndDecode(opencv_image)
-                
-                # Retval is for the text
-                st.write(retval)
+            # c1,c2 = st.columns(2)
+            # with c1:
+            #     st.image(opencv_image)
+            #
+            # with c2:
+            #     st.info('QR Code Decodificado')
+            #     det = cv2.QRCodeDetector()
+            #     retval,points,straight_qrcode = det.detectAndDecode(opencv_image)
+            #
+            #     # Retval is for the text
+            #     st.write(retval)
             
             #st.image(opencv_image)
     else:
